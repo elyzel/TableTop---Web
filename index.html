@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="data:,">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>TableTop — Aprenda a responder a incidentes</title>
+
+  <link
+    rel="stylesheet"
+    href="assets/css/participante.css"
+  >
+  <link
+    rel="stylesheet"
+    href="assets/css/cinematica.css"
+  >
+  <link
+    rel="stylesheet"
+    href="assets/css/apoio_ui.css"
+  >
+
+<link rel="stylesheet" href="assets/css/interrogatorio.css">
+</head>
+
+<body>
+  <div id="fase1">
+  <section id="inicio">
+    <div class="caixa" style="max-width:440px">
+      <h1>Exercício TableTop</h1>
+      <p>Identifique-se e clique em Começar.</p>
+
+      <input
+        id="nome"
+        placeholder="Seu nome"
+        maxlength="40"
+      >
+
+      <button
+        class="btn"
+        type="button"
+        onclick="comecar()"
+      >
+        Começar
+      </button>
+    </div>
+  </section>
+
+  <section id="faseintro" hidden>
+    <h1>Fase 1<br>Máquina Contaminada</h1>
+  </section>
+
+  <section id="winlogin" hidden>
+    <div class="login-box">
+      <div class="login-avatar">👤</div>
+      <div class="login-user-title">Maria Silva</div>
+
+      <div class="login-field">
+        <div class="label">Usuário</div>
+        <div class="value" id="login-user"></div>
+      </div>
+
+      <div class="login-field">
+        <div class="label">Senha</div>
+        <div class="value" id="login-pass"></div>
+      </div>
+
+      <div id="login-status">
+        Aguardando início da sessão...
+      </div>
+    </div>
+  </section>
+
+  <section id="desk" hidden>
+    <div id="area">
+      <div id="desktop-icons">
+        <button
+          id="desktop-browser"
+          class="deskicon"
+          type="button"
+          aria-label="Abrir navegador"
+          onclick="abrirNavegadorParticipante()"
+        >
+          <span class="img" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none">
+              <circle
+                cx="32"
+                cy="32"
+                r="28"
+                fill="#176cc2"
+              />
+              <circle
+                cx="32"
+                cy="32"
+                r="26"
+                stroke="#b6e5ff"
+                stroke-width="2"
+              />
+              <ellipse
+                cx="32"
+                cy="32"
+                rx="12"
+                ry="26"
+                stroke="#e4f6ff"
+                stroke-width="2"
+              />
+              <path
+                d="M7 22H57M6 32H58M7 42H57M32 6V58"
+                stroke="#e4f6ff"
+                stroke-width="2"
+              />
+            </svg>
+          </span>
+
+          <span>Navegador</span>
+        </button>
+      </div>
+
+      <div class="grade" id="grade" hidden></div>
+    </div>
+
+    <div id="browser" class="win">
+      <div class="browser-top">
+        <div class="browser-line1">
+          <span class="browser-controls">● ● ●</span>
+          <span>🌐 Navegador</span>
+
+          <div class="address" id="address">
+            https://www.gooogli.local
+          </div>
+        </div>
+
+        <div class="browser-line2">
+          <span class="fav" id="fav-portal">
+            Portal
+          </span>
+
+          <span
+            class="fav"
+            id="fav-email"
+            onclick="abrirEmailParticipante()"
+          >
+            E-mail
+          </span>
+
+          <span class="fav" id="fav-intranet">
+            Intranet
+          </span>
+
+          <span class="fav" id="fav-suporte">
+            Suporte
+          </span>
+        </div>
+      </div>
+
+      <div id="gooogli">
+        <div class="gooogli-logo">
+          <span>G</span><span>o</span><span>o</span><span>o</span><span>g</span><span>l</span><span>i</span>
+        </div>
+
+        <div class="searchbox">
+          🔍 Pesquisar no Goooogli
+        </div>
+      </div>
+
+      <div id="mail-app">
+        <div class="mail-sidebar">
+          <div class="mail-title">
+            Caixa de Entrada
+          </div>
+
+          <div class="mail-list">
+            <div class="mail-row" id="email-novo">
+              <div class="from">
+                Financeiro - Cobranças
+              </div>
+
+              <div class="subject">
+                POSSÍVEL DÍVIDA EM ABERTO - REGULARIZE AGORA
+              </div>
+
+              <div class="preview">
+                Identificamos uma possível pendência financeira...
+              </div>
+            </div>
+
+            <div class="mail-row lido">
+              <div class="from">RH</div>
+
+              <div class="subject">
+                Comunicado interno - atualização cadastral
+              </div>
+
+              <div class="preview">
+                Favor revisar seus dados até sexta-feira.
+              </div>
+            </div>
+
+            <div class="mail-row lido">
+              <div class="from">
+                Infraestrutura
+              </div>
+
+              <div class="subject">
+                Janela de manutenção programada
+              </div>
+
+              <div class="preview">
+                Serviços internos terão indisponibilidade controlada.
+              </div>
+            </div>
+
+            <div class="mail-row lido">
+              <div class="from">
+                Compras
+              </div>
+
+              <div class="subject">
+                Pedido de cotação - material de escritório
+              </div>
+
+              <div class="preview">
+                Encaminhamos atualização do pedido em aberto.
+              </div>
+            </div>
+
+            <div class="mail-row lido">
+              <div class="from">
+                Projetos
+              </div>
+
+              <div class="subject">
+                Reunião de acompanhamento
+              </div>
+
+              <div class="preview">
+                Ata e próximos passos da reunião de ontem.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mail-content">
+          <div id="email-placeholder">
+            Selecione um e-mail para visualizar.
+          </div>
+
+          <div id="email-body">
+            <div class="mail-subject">
+              POSSÍVEL DÍVIDA EM ABERTO - REGULARIZE AGORA
+            </div>
+
+            <div class="mail-from">
+              De: financeiro@cobrancas-online.com
+            </div>
+
+            <p>Prezado cliente,</p>
+
+            <p>
+              Identificamos uma possível pendência financeira vinculada
+              aos seus dados. Para evitar juros adicionais ou possíveis
+              restrições, consulte imediatamente os detalhes da cobrança.
+            </p>
+
+            <p>
+              Utilize o botão abaixo para visualizar a documentação
+              referente à pendência.
+            </p>
+
+            <a id="phish-link" href="javascript:void(0)">
+              CONSULTAR DÍVIDA
+            </a>
+
+            <div id="download-box">
+              <div style="font-weight:bold;margin-bottom:10px">
+                ⬇ Baixando DIVIDA_PENDENTE.zip
+              </div>
+
+              <div class="download-progress">
+                <div id="download-bar"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="execwin" class="win">
+      <div class="tb" style="background:#ddd;color:#111">
+        Explorador de Arquivos - Downloads
+      </div>
+
+      <div class="exec-content">
+        <b>Downloads</b>
+
+        <div id="arquivo-baixado">
+          📄 DIVIDA_PENDENTE.pdf.exe
+        </div>
+
+        <div
+          id="exec-status"
+          style="margin-top:14px;color:#666;font-size:13px"
+        >
+          Arquivo baixado.
+        </div>
+      </div>
+    </div>
+
+    <div id="bd" class="win">
+      <div class="tb">
+        🛡 Antivírus/EDR
+      </div>
+
+      <div>
+        <b>Ameaça detectada</b><br><br>
+        Arquivo suspeito:<br>
+        <b>DIVIDA_PENDENTE.pdf.exe</b><br><br>
+        Processo relacionado:<br>
+        <b>powershell.exe</b><br><br>
+        Comportamento suspeito detectado.
+      </div>
+    </div>
+
+    <div id="detalhe" class="win">
+      <div class="tb">
+        Detalhes da ação
+      </div>
+
+      <div class="corpo">
+        <div id="d-ic"></div>
+        <div id="d-nome"></div>
+        <div id="d-desc"></div>
+
+        <div class="btns">
+          <button
+            class="btn canc"
+            type="button"
+            onclick="fechar()"
+          >
+            Cancelar
+          </button>
+
+          <button
+            class="btn exec"
+            type="button"
+            onclick="executar()"
+          >
+            ▶ Executar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="taskbar">
+      <span>⊞</span>
+      <span id="bdi">🛡 Antivírus/EDR</span>
+      <span id="net">🌐 Rede</span>
+
+      <span>
+        Risco
+        <span class="risco">
+          <span id="rb"></span>
+        </span>
+      </span>
+
+      <span>
+        Objetivos: <b id="obj">0/3</b>
+      </span>
+
+      <span style="margin-left:auto">
+        Pontos: <b id="pts">0</b>
+      </span>
+
+      <span>
+        ⏱ <b id="tempo">--:--</b>
+      </span>
+
+      <button
+        id="mudo"
+        type="button"
+        onclick="alternarSom()"
+      >
+        🔊
+      </button>
+
+      <span id="relogio"></span>
+    </div>
+  </section>
+
+  <div id="demo-cursor">🖱️</div>
+  <div id="narr"></div>
+  <div id="flash"></div>
+  <div id="preto"></div>
+
+  <div id="notice">
+    <div class="titulo" id="notice-title"></div>
+    <div class="texto" id="notice-text"></div>
+  </div>
+
+  <div id="dica"></div>
+
+  <section
+    id="final"
+    hidden
+    style="overflow:auto;align-items:flex-start"
+  >
+    <div class="caixa" style="margin:auto">
+      <h2 id="f-t"></h2>
+      <p id="f-x"></p>
+
+      <p>
+        Pontuação da Fase 1: <b id="f-p"></b>
+      </p>
+
+      <div
+        style="display:flex;gap:12px;flex-wrap:wrap;margin:20px 0"
+      >
+        <button
+          id="reiniciar-fase1"
+          class="btn"
+          type="button"
+          style="background:#40516b"
+        >
+          Reiniciar Fase 1
+        </button>
+
+        <button
+          id="avancar-fase2"
+          class="btn"
+          type="button"
+          style="background:#176cc2"
+        >
+          Avançar para Fase 2 →
+        </button>
+      </div>
+
+      <p id="erro-reinicio" role="alert" hidden></p>
+
+      <h3>Suas ações e pontuações</h3>
+      <div id="f-h"></div>
+    </div>
+  </section>
+
+  </div>
+  <div id="caso" hidden></div>
+  <script src="assets/js/dados.js"></script>
+  <script src="assets/js/motor.js"></script>
+  <script src="assets/js/controle_animacao.js"></script>
+  <script src="assets/js/relatorio_final.js"></script>
+  <script src="assets/js/encerramento.js"></script>
+  <script src="assets/js/apoio_ui.js"></script>
+  <script src="assets/js/participante.js"></script>
+  <script src="assets/js/interrogatorio.js"></script>
+  <script src="assets/js/bloqueio_animacoes.js"></script>
+</body>
+</html>
+
